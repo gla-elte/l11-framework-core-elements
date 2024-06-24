@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Movie;
 use App\Services\Imdb;
 use Illuminate\Http\Request;
 
@@ -18,6 +19,13 @@ class MovieController extends Controller
   {
     // $poster = $this->imdb->getPoster($request->get('poster'));
     // echo $poster;
-    dd(resolve('App\Services\Imdb'), resolve('App\Services\Imdb'));
+    // dd(resolve('App\Services\Imdb'), resolve('App\Services\Imdb'));
+    return view('movies.index', [
+      'movies' => Movie::all()
+    ]);
+  }
+
+  public function show(Movie $movie) {
+    return view('movies.show', compact('movie'));
   }
 }
