@@ -1,3 +1,6 @@
+@session('message')
+  <div>{{ session('message') }}</div>
+@endsession
 <x-top5movies/>
 <h1>Movies</h1>
 <div>
