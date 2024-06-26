@@ -12,15 +12,17 @@ class MoviePremier extends Notification
 {
   use Queueable;
 
-public $movieId;
+  protected $movieId;
+  protected $budget;
 
-/**
- * Create a new notification instance.
- */
-public function __construct($movieId)
-{
-  $this->movieId = $movieId;
-}
+  /**
+   * Create a new notification instance.
+   */
+  public function __construct($movieId, $budget)
+  {
+    $this->movieId = $movieId;
+    $this->budget = $budget;
+  }
 
   /**
    * Get the notification's delivery channels.
@@ -29,7 +31,7 @@ public function __construct($movieId)
    */
   public function via(object $notifiable): array
   {
-    return ['mail'];
+    return ['mail', 'database'];
   }
 
   /**
@@ -55,7 +57,8 @@ public function __construct($movieId)
   public function toArray(object $notifiable): array
   {
     return [
-      //
+      'movieId' => $this->movieId,
+      'budget' => $this->budget,
     ];
   }
 }

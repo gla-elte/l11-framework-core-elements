@@ -39,8 +39,9 @@ class MovieController extends Controller
 
   public function store() {
     $movie = Movie::create(request()->all());
-    Notification::send(User::first(), new MoviePremier($movie->id));
-    Notification::send(User::first(), new ContactMe());
+    Notification::send(User::first(), new MoviePremier($movie->id, 1234));
+    // Notification::send(User::first(), new ContactMe());
+    // User::first()->notify(new ContactMe());
     return redirect(route('movies.index'))->with('message', 'Movie created.');
   }
 }
