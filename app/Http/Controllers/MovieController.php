@@ -39,12 +39,13 @@ class MovieController extends Controller
   }
 
   public function store() {
-    $movie = Movie::create(
-      array_merge(
-        request()->all(),
-        ['user_id' => auth()->id()]
-      )
-    );
+    // $movie = Movie::create(
+    //   array_merge(
+    //     request()->all(),
+    //     ['user_id' => auth()->id()]
+    //   )
+    // );
+    Movie::create(request()->all());
 
     // Notification::send(User::first(), new MoviePremier($movie->id, 1234));
     // Notification::send(User::first(), new ContactMe());
