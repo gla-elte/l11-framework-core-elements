@@ -6,5 +6,7 @@
   <input type="date" name="premier_date" id="premier_date"><br>
   <label for="score">Initial score:</label><br>
   <input type="number" name="score" id="score" value="1"><br>
+  <label for="budget">Budget:</label><br>
+  <input type="number" name="budget" id="budget" value="1"><br>
   <input type="submit" value="Save">
 </form>

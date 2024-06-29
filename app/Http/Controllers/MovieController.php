@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\MovieCreated;
 use App\Models\Movie;
 use App\Models\User;
 use App\Notifications\ContactMe;
@@ -38,10 +39,20 @@ class MovieController extends Controller
   }
 
   public function store() {
-    $movie = Movie::create(request()->all());
-    Notification::send(User::first(), new MoviePremier($movie->id, 1234));
+    $movie = Movie::create(
+      array_merge(
+        request()->all(),
+        ['user_id' => auth()->id()]
+      )
+    );
+
+    // Notification::send(User::first(), new MoviePremier($movie->id, 1234));
     // Notification::send(User::first(), new ContactMe());
     // User::first()->notify(new ContactMe());
+
+    // MovieCreated::dispatch($movie);
+    // event(new MovieCreated($movie));
+
     return redirect(route('movies.index'))->with('message', 'Movie created.');
   }
 }

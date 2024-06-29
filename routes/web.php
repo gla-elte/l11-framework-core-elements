@@ -17,7 +17,7 @@ Route::get('/', function () {
 
 // Route::get('/movies', [MovieController::class, 'index'])->name('movies.index');
 // Route::get('/movies/{movie}', [MovieController::class, 'show'])->name('movies.show');
-Route::resource('movies', MovieController::class);
+
 
 Route::get('/request-test', function () {
   // return request('name');
@@ -53,7 +53,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/notifications/{notification}', [\App\Http\Controllers\UserNotificationController::class, 'show'])
       ->name('notifications.show');
 
-
+    Route::resource('movies', MovieController::class);
 });
 
 require __DIR__.'/auth.php';
